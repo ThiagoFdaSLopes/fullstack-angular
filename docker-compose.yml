@@ -4,7 +4,7 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - 3000:3000
+      - 4200:4200
     platform: linux/x86_64
     working_dir: /app-frontend
     depends_on:
@@ -13,7 +13,7 @@ services:
     # Os `healthcheck` devem garantir que a aplicação
     # está operacional, antes de liberar o container
     healthcheck:
-      test: ["CMD", "lsof", "-t", "-i:3000"]  # Caso utilize outra porta interna para o front, altere ela aqui também
+      test: ["CMD", "lsof", "-t", "-i:4200"]  # Caso utilize outra porta interna para o front, altere ela aqui também
       timeout: 10s
       retries: 5
   backend:
