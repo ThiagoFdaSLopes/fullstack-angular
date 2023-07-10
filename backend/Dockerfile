@@ -1,12 +1,17 @@
 FROM node:16.14-alpine
 
+
+RUN mkdir -p /app-backend && chown -R node:node /app-backend
+
+USER node
+
 WORKDIR /app-backend
 
-COPY package* ./
+COPY --chown=node:node package*.json ./
 
-RUN npm install --silent
+RUN npm install
 
-COPY . ./
+COPY --chown=node:node . .
 
 EXPOSE 3001
 

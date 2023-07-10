@@ -4,6 +4,7 @@ services:
   frontend:
     container_name: app_frontend
     build: ./frontend
+    working_dir: /app-frontend
     ports:
       - 4200:4200
     platform: linux/x86_64
@@ -16,11 +17,11 @@ services:
       test: ["CMD", "lsof", "-t", "-i:4200"]
       timeout: 10s
       retries: 5
-    command: ng serve --host 0.0.0.0 --poll=2000
   backend:
     build: ./backend
     container_name: app_backend
-    restart: always
+    working_dir: /app-backend
+    # restart: always
     tty: true
     stdin_open: true
     volumes:
