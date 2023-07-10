@@ -7,55 +7,58 @@ services:
     ports:
       - 4200:4200
     platform: linux/x86_64
-    working_dir: /app-frontend
     volumes: 
-      - ./frontend/src:/app-frontend/src
+      - ./frontend:/app-frontend
     depends_on:
       backend:
         condition: service_healthy
-    # Os `healthcheck` devem garantir que a aplicação
-    # está operacional, antes de liberar o container
     healthcheck:
-      test: ["CMD", "lsof", "-t", "-i:4200"]  # Caso utilize outra porta interna para o front, altere ela aqui também
+      test: ["CMD", "lsof", "-t", "-i:4200"]
       timeout: 10s
       retries: 5
+    command: ng serve --host 0.0.0.0 --poll=2000
   backend:
-    container_name: app_backend
     build: ./backend
+    container_name: app_backend
+    restart: always
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./backend:/app-backend
     ports:
       - 3001:3001
-    platform: linux/x86_64
-    working_dir: /app-backend
-    command: dev 
-    volumes: 
-      - ./backend/src:/app-backend/src
-    depends_on:
-      db:
-        condition: service_healthy
     environment:
-      - APP_PORT=3001
-      - JWT_SECRET=jwt_secret
-      # Os dados abaixo se referem ao container `db`
-      - DB_USER=root
       - DB_PASS=123456
+      - DB_USER=root
+      - DB_NAME=dashboard
       - DB_HOST=db
       - DB_PORT=3306
+      - PORT=3001
+    depends_on:
+      - db
+    networks:
+      - api_network
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3001"] # Caso utilize outra porta interna para o back, altere ela aqui também
       timeout: 10s
       retries: 5
   db:
     image: mysql:8.0.21
-    container_name: db
-    platform: linux/x86_64
+    container_name: container_db
+    restart: always
     ports:
       - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=123456
-    restart: 'always'
+    networks:
+      - api_network
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"] # Deve aguardar o banco ficar operacional
       timeout: 10s
       retries: 5
     cap_add:
       - SYS_NICE # Deve omitir alertas menores
+
+networks:
+  api_network:
+    driver: bridge

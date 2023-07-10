@@ -1,4 +1,4 @@
-import * as express from 'express';
+import express from 'express';
 
 class App {
   public app: express.Express;
@@ -9,7 +9,7 @@ class App {
     this.config();
 
     // Não remover essa rota
-    this.app.get('/', (_req, res) => res.json({ ok: false }));
+    this.app.get('/', (_req, res) => res.json({ ok: true }));
   }
 
   private config():void {

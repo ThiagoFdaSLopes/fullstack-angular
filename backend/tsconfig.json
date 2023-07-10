@@ -1,22 +1,21 @@
 {
   "compilerOptions": {
     "target": "es2019",
-    "module": "commonjs",
-    "sourceMap": true,                     
+    "module": "commonjs",                    
     "outDir": "./build",
     "rootDir": "./src",
     "strict": true,
+    "allowJs": true,
     "moduleResolution": "node",
     "baseUrl": ".", 
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
     "paths": {
       "*": ["node_modules/*"]
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["src/tests"]
+  "exclude": ["src/tests", "./build"]
 }
