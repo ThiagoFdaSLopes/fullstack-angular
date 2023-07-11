@@ -34,9 +34,13 @@ class Influencer extends Model {
       allowNull: false,
     },
     followers: {
-      type: INTEGER,
+      type: STRING,
       allowNull: false,
     },
+    category: {
+      type: STRING,
+      allowNull: false,
+    }
   }, {
     underscored: true,
     sequelize: db,
