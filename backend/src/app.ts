@@ -1,4 +1,5 @@
 import express from 'express';
+import { UserRouter } from './routes';
 
 class App {
   public app: express.Express;
@@ -7,9 +8,7 @@ class App {
     this.app = express();
 
     this.config();
-
-    // Não remover essa rota
-    this.app.get('/', (_req, res) => res.json({ ok: true }));
+    this.routes();
   }
 
   private config():void {
@@ -24,11 +23,13 @@ class App {
     this.app.use(accessControl);
   }
 
+  private routes(): void {
+    this.app.use('/login', UserRouter);
+  }
+
   public start(PORT: string | number):void {
     this.app.listen(PORT, () => console.log(`Running on port ${PORT}`));
   }
 }
 
-export { App };
-
-export const { app } = new App();
+export default App;
