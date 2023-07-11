@@ -6,8 +6,13 @@ const influencerController = new InfluencerController();
 
 const influencerRouter = Router();
 
+influencerRouter.get('/search', 
+    validateToken, 
+    (req: Request, res: Response) => influencerController.SearchInfluencer(req, res));
+
 influencerRouter.get('/', 
     validateToken, 
     (req: Request, res: Response) => influencerController.GetAllInfluencers(req, res));
+
 
 export default influencerRouter;
