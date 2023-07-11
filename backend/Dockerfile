@@ -2,9 +2,9 @@ FROM node:16.14-alpine
 
 WORKDIR /app-backend
 
-COPY package* ./
+COPY package*.json ./
 
-RUN npm install --silent
+RUN npm install
 
 COPY . ./
 
