@@ -1,3 +1,4 @@
 import UserRouter from './User';
+import influencerRouter from './Influencer';
 
-export { UserRouter };
+export { UserRouter, influencerRouter };
