@@ -4,6 +4,7 @@ services:
   frontend:
     container_name: app_frontend
     build: ./frontend
+    working_dir: /app-frontend
     ports:
       - 4200:4200
     volumes: 
@@ -19,7 +20,8 @@ services:
   backend:
     build: ./backend
     container_name: app_backend
-    restart: always
+    working_dir: /app-backend
+    # restart: always
     tty: true
     stdin_open: true
     volumes:
