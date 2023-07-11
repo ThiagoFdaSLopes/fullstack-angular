@@ -3,10 +3,11 @@ import db from '.';
 
 class Influencer extends Model {
     declare readonly id: number;
-    declare email: string;
-    declare username: string;
-    declare password: string;
-    declare role: string;
+    declare image: string;
+    declare name: string;
+    declare platform: string;
+    declare country: string;
+    declare followers: number;
   }
   
   Influencer.init({
