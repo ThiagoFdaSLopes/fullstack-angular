@@ -6,9 +6,9 @@ services:
     build: ./frontend
     ports:
       - 4200:4200
-    platform: linux/x86_64
     volumes: 
-      - ./frontend:/app-frontend
+      - ./frontend/node_modules:/app-frontend/node_modules
+      - ./frontend/src:/app-frontend/src
     depends_on:
       backend:
         condition: service_healthy
@@ -16,7 +16,6 @@ services:
       test: ["CMD", "lsof", "-t", "-i:4200"]
       timeout: 10s
       retries: 5
-    command: ng serve --host 0.0.0.0 --poll=2000
   backend:
     build: ./backend
     container_name: app_backend
@@ -24,7 +23,8 @@ services:
     tty: true
     stdin_open: true
     volumes:
-      - ./backend:/app-backend
+      - ./backend/node_modules:/app-backend/node_modules
+      - ./backend/src:/app-backend/src
     ports:
       - 3001:3001
     environment:
@@ -35,7 +35,8 @@ services:
       - DB_PORT=3306
       - PORT=3001
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - api_network
     healthcheck:
