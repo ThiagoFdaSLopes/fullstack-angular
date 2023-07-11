@@ -1,5 +1,5 @@
 import express from 'express';
-import { UserRouter } from './routes';
+import { UserRouter, influencerRouter } from './routes';
 
 class App {
   public app: express.Express;
@@ -25,6 +25,7 @@ class App {
 
   private routes(): void {
     this.app.use('/login', UserRouter);
+    this.app.use('/influencers', influencerRouter)
   }
 
   public start(PORT: string | number):void {
