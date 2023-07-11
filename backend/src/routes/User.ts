@@ -7,6 +7,7 @@ const userController = new UserController();
 const userRouter = Router();
 
 userRouter.post('/', (req: Request, res: Response) => userController.UserLogin(req, res));
+userRouter.post('/register', (req: Request, res: Response) => userController.UserCreate(req, res));
 userRouter.get(
   '/role',
   validateToken,
