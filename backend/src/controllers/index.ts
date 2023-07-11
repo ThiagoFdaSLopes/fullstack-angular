@@ -1,3 +1,4 @@
 import UserController from './User';
+import InfluencerController from './Influencer';
 
-export { UserController };
+export { UserController, InfluencerController };
