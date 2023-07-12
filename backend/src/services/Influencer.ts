@@ -11,7 +11,7 @@ export default class InfluencerService {
         return result;
     }
 
-    async SearchInfluencer(query: IQuery): Promise<Influencer[] | null> {
+    async SearchInfluencersByQuery(query: IQuery): Promise<Influencer[] | null> {
         let whereClause: IWhereClause = {
             [Op.or]: [
                 { name: { [Op.like]: `%${query.name}%`}},

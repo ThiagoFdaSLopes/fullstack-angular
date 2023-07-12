@@ -8,7 +8,7 @@ const influencerRouter = Router();
 
 influencerRouter.get('/search', 
     validateToken, 
-    (req: Request, res: Response) => influencerController.SearchInfluencer(req, res));
+    (req: Request, res: Response) => influencerController.SearchInfluencersByQuery(req, res));
 
 influencerRouter.get('/', 
     validateToken, 
