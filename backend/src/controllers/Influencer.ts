@@ -15,4 +15,10 @@ export default class InfluencerController {
         if(!result) return res.status(404).json({ message: "Influencers Nao Encontrado"})
         res.status(200).json(result)
     }
+
+    public async SearchInfluencersByCombinedOptions(req: Request, res: Response): Promise<Response | void> {
+        const result = await this.influencerService.SearchInfluencersByCombinedOptions(req.query);
+        if(!result) return res.status(404).json({ message: "Influencer Nao Encontrado"})
+        res.status(200).json(result)
+    }
 }
