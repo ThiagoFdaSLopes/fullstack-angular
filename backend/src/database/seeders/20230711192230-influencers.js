@@ -6,7 +6,7 @@ module.exports = {
         name: 'Billie Eilish',
         platform: 'Instagram',
         country: 'EUA',
-        followers: '109000000',
+        followers: 109000000,
         category: "Artista"
       },
       {
@@ -14,7 +14,7 @@ module.exports = {
         name: 'Travis Scott',
         platform: 'Instagram',
         country: 'EUA',
-        followers: '49800000',
+        followers: 49800000,
         category: "Artista"
       },
       {
@@ -22,7 +22,7 @@ module.exports = {
         name: 'Chester Bennington',
         platform: 'Instagram',
         country: 'EUA',
-        followers: '1400000',
+        followers: 1400000,
         category: "Artista"
       },
       {
@@ -30,7 +30,7 @@ module.exports = {
         name: 'Neymar Junior',
         platform: 'Instagram',
         country: 'BR',
-        followers: '210000000',
+        followers: 210000000,
         category: "Esporte"
       },
     ], {});
