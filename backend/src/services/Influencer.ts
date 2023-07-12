@@ -27,4 +27,19 @@ export default class InfluencerService {
         })
         return result.length > 0 ? result : null;
     }
+
+    async SearchInfluencersByCombinedOptions(query: IQuery): Promise<Influencer | null> {
+        let whereClause = {
+            [Op.and]: [
+                { name: { [Op.like]: `%${query.name}%`}},
+                { country: { [Op.like]: `%${query.country}%`}},
+                { category: { [Op.like]: `%${query.category}%`}},
+                { followers: { [Op.gte]: Number(query.followers) | 0}},
+            ]
+        }
+        const result = await this.model.findOne({
+            where: whereClause
+        })
+        return result ? result : null;
+    }
 }
