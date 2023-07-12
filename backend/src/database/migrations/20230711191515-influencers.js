@@ -25,7 +25,7 @@ module.exports = {
         allowNull: false,
       },
       followers: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       category: {
