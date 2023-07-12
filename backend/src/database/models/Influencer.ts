@@ -34,7 +34,7 @@ class Influencer extends Model {
       allowNull: false,
     },
     followers: {
-      type: STRING,
+      type: INTEGER,
       allowNull: false,
     },
     category: {
