@@ -1,6 +1,6 @@
 export default interface IQuery {
     name?: string;
-    followers?: string;
+    followers?: number;
     category?: string;
     country?: string;
 }
