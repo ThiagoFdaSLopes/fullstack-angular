@@ -10,6 +10,10 @@ influencerRouter.post('/register',
     validateToken, 
     (req: Request, res: Response) => influencerController.CreateInfluencer(req, res));
 
+influencerRouter.put('/update/:id', 
+    validateToken, 
+    (req: Request, res: Response) => influencerController.UpdateInfluencer(req, res));
+
 influencerRouter.get('/searchCombined', 
     validateToken, 
     (req: Request, res: Response) => influencerController.SearchInfluencersByCombinedOptions(req, res));
