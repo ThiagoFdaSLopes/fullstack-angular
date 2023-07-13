@@ -22,5 +22,9 @@ influencerRouter.get('/',
     validateToken, 
     (req: Request, res: Response) => influencerController.GetAllInfluencers(req, res));
 
+influencerRouter.delete('/delete/:id', 
+    validateToken, 
+    (req: Request, res: Response) => influencerController.DeleteInfluencer(req, res));
+
 
 export default influencerRouter;
