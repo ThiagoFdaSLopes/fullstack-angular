@@ -2,6 +2,8 @@ import { ModelStatic, Op } from 'sequelize';
 import Influencer from '../database/models/Influencer';
 import IQuery from '../interfaces/IQuery';
 import IWhereClause from '../interfaces/IWhereClause';
+import IInfluencer from '../interfaces/IInfluencer';
+import { validateInfluencerCreate } from './validations/schema';
 
 export default class InfluencerService {
     protected model: ModelStatic<Influencer> = Influencer;
@@ -22,10 +24,16 @@ export default class InfluencerService {
         if (query.followers !== undefined) {
             whereClause[Op.or].push({ followers: { [Op.gte]: Number(query.followers) } })
         }
-        const result = await this.model.findAll({
-            where: whereClause
-        })
-        return result.length > 0 ? result : null;
+
+        try {
+            const result = await this.model.findAll({
+                where: whereClause
+            })
+            return result.length > 0 ? result : null;
+        } catch(error) {
+            const err = error as Error;
+            throw new Error(`${err.message}`);
+        }
     }
 
     async SearchInfluencersByCombinedOptions(query: IQuery): Promise<Influencer | null> {
@@ -37,9 +45,33 @@ export default class InfluencerService {
                 { followers: { [Op.gte]: Number(query.followers) | 0}},
             ]
         }
-        const result = await this.model.findOne({
-            where: whereClause
-        })
-        return result ? result : null;
+        try {
+            const result = await this.model.findOne({
+                where: whereClause
+            })
+            return result ? result : null;
+        } catch(error) {
+            const err = error as Error;
+            throw new Error(`${err.message}`);
+        }
+    }
+
+    async CreateInfluencer(influencer: IInfluencer): Promise<Influencer | null> {
+        try {
+            validateInfluencerCreate(influencer)
+            const [result, created] = await this.model.findOrCreate({
+                where: {
+                    name: influencer.name
+                },
+                defaults: {
+                    ...influencer
+                },
+                returning: true,
+            });
+            return created ? result?.dataValues : null
+        } catch(error) {
+            const err = error as Error;
+            throw new Error(`${err.message}`);
+        }
     }
 }
