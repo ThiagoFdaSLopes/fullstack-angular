@@ -6,6 +6,10 @@ const influencerController = new InfluencerController();
 
 const influencerRouter = Router();
 
+influencerRouter.post('/register', 
+    validateToken, 
+    (req: Request, res: Response) => influencerController.CreateInfluencer(req, res));
+
 influencerRouter.get('/searchCombined', 
     validateToken, 
     (req: Request, res: Response) => influencerController.SearchInfluencersByCombinedOptions(req, res));
