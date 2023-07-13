@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { InfluencerService } from '../services';
+import BaseHttpError from '../errors/BaseHTTPError';
 
 export default class InfluencerController {
     constructor(private influencerService = new InfluencerService()) {}
@@ -11,14 +12,36 @@ export default class InfluencerController {
     }
 
     public async SearchInfluencersByQuery(req: Request, res: Response): Promise<Response | void> {
-        const result = await this.influencerService.SearchInfluencersByQuery(req.query);
-        if(!result) return res.status(404).json({ message: "Influencers Nao Encontrado"})
-        res.status(200).json(result)
+        try {
+            const result = await this.influencerService.SearchInfluencersByQuery(req.query);
+            if(!result) return res.status(404).json({ message: "Influencers Nao Encontrado"})
+            res.status(200).json(result)
+        } catch(error) {
+            const err = error as Error
+            res.status(500).json(`${err.message}`)
+        }
     }
 
     public async SearchInfluencersByCombinedOptions(req: Request, res: Response): Promise<Response | void> {
-        const result = await this.influencerService.SearchInfluencersByCombinedOptions(req.query);
-        if(!result) return res.status(404).json({ message: "Influencer Nao Encontrado"})
-        res.status(200).json(result)
+        try {
+            const result = await this.influencerService.SearchInfluencersByCombinedOptions(req.query);
+            if(!result) return res.status(404).json({ message: "Influencer Nao Encontrado"})
+            res.status(200).json(result)
+        } catch(error){
+            const err = error as Error
+            res.status(500).json(`${err.message}`)
+        }
+    }
+
+    public async CreateInfluencer(req: Request, res: Response): Promise<Response | void> {
+        try {
+            if(res.locals.user.role !== "admin") throw new BaseHttpError("Apenas admin possue essa permissao", 401)
+            const result = await this.influencerService.CreateInfluencer(req.body);
+            if(!result) return res.status(404).json({ message: "Influencer ja existe"})
+            res.status(200).json(result)
+        } catch(error){
+            const err = error as Error
+            res.status(401).json({ message: `${err.message}`})
+        }
     }
 }
