@@ -8,6 +8,7 @@ class Influencer extends Model {
     declare platform: string;
     declare country: string;
     declare followers: number;
+    declare category: string;
   }
   
   Influencer.init({
