@@ -74,4 +74,21 @@ export default class InfluencerService {
             throw new Error(`${err.message}`);
         }
     }
+
+    async DeleteInfluencer(id: number): Promise<Influencer | null> {
+        try {
+            const result = await this.model.findOne({
+                where: {
+                    id
+                },
+            });
+            if(!result) throw new Error("Influencer nao encontrado");
+
+            await result.destroy();
+            return result;
+        }catch(error) {
+            const err = error as Error;
+            throw new Error(`${err.message}`);
+        }
+    }
 }
