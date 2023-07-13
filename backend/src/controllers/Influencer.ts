@@ -55,4 +55,15 @@ export default class InfluencerController {
             res.status(401).json({ message: `${err.message}`});
         }
     }
+
+    public async UpdateInfluencer(req: Request, res: Response): Promise<Response | void> {
+        try {
+            if(res.locals.user.role !== "admin") throw new BaseHttpError("Apenas admin possue essa permissao", 401);
+            const result = await this.influencerService.UpdateInfluencer(Number(req.params.id), req.body);
+            return res.status(200).json({ id: req.params.id, ...req.body});
+        } catch(error) {
+            const err = error as Error;
+            return res.status(401).json({ message: `${err.message}`});
+        }
+    }
 }
