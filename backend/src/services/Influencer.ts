@@ -86,7 +86,20 @@ export default class InfluencerService {
 
             await result.destroy();
             return result;
-        }catch(error) {
+        } catch(error) {
+            const err = error as Error;
+            throw new Error(`${err.message}`);
+        }
+    }
+
+    async UpdateInfluencer(id: number, body: IInfluencer): Promise<IInfluencer | null> {
+        try {
+            validateInfluencerCreate(body);
+            const findUser = this.model.findOne({where : { id }});
+            if(!findUser) throw new Error("Influencer nao encontrado");
+            await this.model.update({ ...body }, { where: { id }});
+            return body;
+        } catch(error) {
             const err = error as Error;
             throw new Error(`${err.message}`);
         }
