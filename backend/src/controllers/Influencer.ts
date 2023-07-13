@@ -35,13 +35,24 @@ export default class InfluencerController {
 
     public async CreateInfluencer(req: Request, res: Response): Promise<Response | void> {
         try {
-            if(res.locals.user.role !== "admin") throw new BaseHttpError("Apenas admin possue essa permissao", 401)
+            if(res.locals.user.role !== "admin") throw new BaseHttpError("Apenas admin possue essa permissao", 401);
             const result = await this.influencerService.CreateInfluencer(req.body);
-            if(!result) return res.status(404).json({ message: "Influencer ja existe"})
-            res.status(200).json(result)
+            if(!result) return res.status(404).json({ message: "Influencer ja existe"});
+            res.status(200).json(result);
         } catch(error){
-            const err = error as Error
-            res.status(401).json({ message: `${err.message}`})
+            const err = error as Error;
+            res.status(401).json({ message: `${err.message}`});
+        }
+    }
+
+    public async DeleteInfluencer(req: Request, res: Response): Promise<Response | void> {
+        try {
+            if(res.locals.user.role !== "admin") throw new BaseHttpError("Apenas admin possue essa permissao", 401);
+            const result = await this.influencerService.DeleteInfluencer(Number(req.params.id));
+            res.status(200).json(result);
+        } catch(error) {
+            const err = error as Error;
+            res.status(401).json({ message: `${err.message}`});
         }
     }
 }
