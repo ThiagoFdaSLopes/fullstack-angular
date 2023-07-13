@@ -10,6 +10,9 @@ install_dependencies() {
     
     printf "\n> Executando npm install\n"
     npm_config_loglevel=silent npm install --cache ${cacheFolder}
+
+    printf "\n> Limpando Cache Folder\n"
+    rm -rf $cacheFolder
     
     printf "\n> Voltando para a pasta anterior\n"
     cd -
