@@ -75,7 +75,7 @@ export default class InfluencerService {
         }
     }
 
-    async DeleteInfluencer(id: number): Promise<Influencer | null> {
+    async DeleteInfluencer(id: number): Promise<Influencer[] | null> {
         try {
             const result = await this.model.findOne({
                 where: {
@@ -85,7 +85,8 @@ export default class InfluencerService {
             if(!result) throw new Error("Influencer nao encontrado");
 
             await result.destroy();
-            return result;
+            const allInfluencers = await this.model.findAll();
+            return allInfluencers;
         } catch(error) {
             const err = error as Error;
             throw new Error(`${err.message}`);
