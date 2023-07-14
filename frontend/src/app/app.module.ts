@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { LoginComponent } from './components/login/login.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     SideBarComponent,
     LoginComponent,
     SpinnerComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
