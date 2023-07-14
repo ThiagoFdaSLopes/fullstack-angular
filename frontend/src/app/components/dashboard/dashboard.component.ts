@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import IInfluencer from 'src/app/interfaces/IInfluencer';
+import { ListService } from 'src/app/services/list.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,10 +10,12 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
   token: string | null = ''
-  constructor(private router: Router) {}
+  influencers: IInfluencer[] = []
+  constructor(private router: Router, private listService: ListService) {}
 
   ngOnInit(): void {
-    this.token = localStorage.getItem('token');
-    if(!this.token) this.router.navigate(['/'])
+    const token = localStorage.getItem('token') || '';
+
+    if(!token) this.router.navigate(['/'])
   }
 }
