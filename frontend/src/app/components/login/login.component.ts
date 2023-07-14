@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ListService } from 'src/app/services/list.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent {
   password: string = ''
   messageError: string = ''
 
-  constructor(private listService: ListService) {}
+  constructor(private listService: ListService, private router: Router) {}
 
   ngOnInit(): void {
     console.log("Comecei")
@@ -44,6 +45,7 @@ export class LoginComponent {
         localStorage.setItem("token", JSON.stringify(response.token))
         this.show = !this.show
         this.showMessageError = false
+        this.router.navigate(['/dashboard'])
       },
       ({error}) => {
         this.messageError = error.message
