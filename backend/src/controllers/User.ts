@@ -24,7 +24,7 @@ export default class UserController {
   public async UserCreate(req: Request, res: Response): Promise<Response | void> {
     try {
       const result = await this.userService.UserCreate(req.body)
-      if(result === null) return res.status(404).json({ message: "Usuario ja cadastrado"})
+      if(result === null) return res.status(404).json({ message: "User already registered"})
       const token = createToken(result);
       res.status(200).json({ token });
     } catch(error) {
