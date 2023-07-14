@@ -25,12 +25,16 @@
                     <i class='bx bx-search icon'></i>
                     <span class="text nav-text">Search</span>
                 </li>
+                <li class="nav-link" *ngIf="permission">
+                    <i class='bx bx-user-plus icon'></i>
+                    <span class="text nav-text">New Influencer</span>
+                </li>
             </ul>
         </div>
         <div class="bottom-content">
             <li class="nav-link">
                 <i class='bx bx-log-out icon'></i>
-                <span class="text nav-text">Logout</span>
+                <span class="text nav-text" (click)="Logout()">Logout</span>
             </li>
             <li class="mode">
                 <div class="moon-sun">
