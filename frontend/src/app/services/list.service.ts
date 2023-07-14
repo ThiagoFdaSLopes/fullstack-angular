@@ -25,4 +25,14 @@ export class ListService {
     const headers = new HttpHeaders().set("Authorization", token)
     return this.http.get(`${this.apiUrl}/login/role`, { headers })
   }
+
+  GetInfluencers(token: string): Observable<any> {
+    const headers = new HttpHeaders().set("Authorization", token)
+    return this.http.get(`${this.apiUrl}/influencers`, { headers })
+  }
+
+  Delete(id: number, token: string): Observable<any> {
+    const headers = new HttpHeaders().set("Authorization", token)
+    return this.http.delete(`${this.apiUrl}/influencers/delete/${id}`, { headers })
+  }
 }
