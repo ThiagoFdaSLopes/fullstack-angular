@@ -8,6 +8,8 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { LoginComponent } from './components/login/login.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { TableComponent } from './components/table/table.component';
+import { EditComponent } from './components/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     LoginComponent,
     SpinnerComponent,
     DashboardComponent,
+    TableComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,
