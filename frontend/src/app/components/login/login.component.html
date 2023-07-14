@@ -1,0 +1,23 @@
+<div class="container flex">
+  <div class="login-page flex">
+    <div class="text">
+      <h1>InTunes</h1>
+      <p>Find your favorite influencers</p>
+      <p>anywhere in the world.</p>
+    </div>
+    <form action="#">
+      <input type="email" placeholder="Email"  [ngClass]="inputEmailValidate ? 'input-red' : ''" (change)="handleInputChange($event)"/>
+      <input type="password" placeholder="Password" required [ngClass]="inputPasswordValidate ? 'input-red' : ''" (change)="handleInputChange($event)"/>
+      <div class="link">
+        <button type="button" class="login" (click)="Login()" *ngIf="show">Login</button>
+        <app-spinner *ngIf="!show"></app-spinner>
+        <a routerLink="/" class="forgot">Forgot password?</a>
+      </div>
+      <p class="text-error" *ngIf="showMessageError">{{ messageError }}</p>
+      <hr />
+      <div class="button">
+        <a routerLink="/register">Create new account</a>
+      </div>
+    </form>
+  </div>
+</div>
