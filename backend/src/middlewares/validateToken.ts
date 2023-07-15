@@ -10,7 +10,7 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
     res.locals.user = decoded;
     next();
   } catch (error) {
-    res.status(401).json({ message: 'Token must be a valid token' });
+    return res.status(401).json({ message: 'Token must be a valid token' });
   }
 };
 
