@@ -45,9 +45,6 @@ export class SideBarComponent {
     if(option === "dashboard") {
       this.router.navigate(['dashboard'])
     }
-    if(option === "showFilter") {
-      console.log("ShowFilter")
-    }
     if(option === "newInfluencer"){
       this.router.navigate(['/create'])
     }

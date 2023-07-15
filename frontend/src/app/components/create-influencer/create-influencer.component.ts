@@ -35,7 +35,6 @@ export class CreateInfluencerComponent {
     this.show = !this.show
     this.listService.CreateInfluencer(this.token, this.influencer).subscribe(
       (response) => {
-        console.log(response)
         this.showMessageError = false
         this.show = !this.show
       },

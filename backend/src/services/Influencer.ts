@@ -14,7 +14,6 @@ export default class InfluencerService {
     }
 
     async SearchInfluencers(query: IQuery): Promise<Influencer[] | null> {
-        console.log(query)
         let whereClause: IWhereClause = {
             [Op.or]: []
         }
@@ -39,7 +38,6 @@ export default class InfluencerService {
             const result = await this.model.findAll({
                 where: whereClause
             })
-            console.log(result)
             return result.length > 0 ? result : null;
         } catch(error) {
             const err = error as Error;
