@@ -1,3 +1,31 @@
+<div class="container flex">
+    <form>
+      <label>
+        Name:
+        <input type="text" placeholder="Name" [ngModelOptions]="{standalone: true}" [(ngModel)]="searchFilter.name"/>
+      </label>
+      <label>
+        Country:
+        <input type="text" placeholder="Country"  [ngModelOptions]="{standalone: true}" [(ngModel)]="searchFilter.country"/>
+      </label>
+      <label>
+        Category:
+        <input type="text" placeholder="Category" [ngModelOptions]="{standalone: true}" [(ngModel)]="searchFilter.category"/>
+      </label>
+      <label>
+        Followers:
+        <input type="number" placeholder="Followers" [ngModelOptions]="{standalone: true}" [(ngModel)]="searchFilter.followers"/>
+      </label>
+      <label>
+        Combine Search
+        <input type="checkbox" [(ngModel)]="isChecked" [ngModelOptions]="{standalone: true}">
+      </label>
+      <p *ngIf="showMessageError" class="text-error">{{ errorMessage }}</p>
+      <app-spinner *ngIf="!show"></app-spinner>
+      <button type="button" class="Search" (click)="Search()">Search</button>
+      <button class="Search" (click)="RefreshPage()">Refresh</button>
+    </form>
+  </div>
 <table>
     <thead>
         <tr>
@@ -21,10 +49,10 @@
             <td>{{ item.country }}</td>
             <td>{{ item.category }}</td>
             <td>
-                <button *ngIf="permission" (click)="Edit(item.id)">
+                <button *ngIf="permission" (click)="Edit(item.id)" class="icon-button">
                     <i class='bx bxs-edit-alt bx-tada icon' style='color:#44c43f'></i>
                 </button>
-                <button *ngIf="permission" (click)="Delete(item.id)">
+                <button *ngIf="permission" (click)="Delete(item.id)" class="icon-button">
                     <i class='bx bxs-trash-alt bx-tada icon' style='color:#ff0005'></i>
                 </button>
             </td>
