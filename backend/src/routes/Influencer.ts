@@ -22,6 +22,10 @@ influencerRouter.get('/search',
     validateToken, 
     (req: Request, res: Response) => influencerController.SearchInfluencersByQuery(req, res));
 
+influencerRouter.get('/:id', 
+    validateToken, 
+    (req: Request, res: Response) => influencerController.SearchInfluencerById(req, res));
+
 influencerRouter.get('/', 
     validateToken, 
     (req: Request, res: Response) => influencerController.GetAllInfluencers(req, res));
