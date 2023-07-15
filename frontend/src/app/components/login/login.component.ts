@@ -24,9 +24,7 @@ export class LoginComponent {
 
   constructor(private listService: ListService, private router: Router) {}
 
-  ngOnInit(): void {
-    console.log("Comecei")
-  }
+  ngOnInit(): void {}
 
   handleInputChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
@@ -52,8 +50,8 @@ export class LoginComponent {
     this.show = !this.show
     this.listService.Login({email: this.email, password: this.password}).subscribe(
       (response) => {
-        localStorage.setItem("token", JSON.stringify(response.token))
-        this.listService.GetRole(response.token).subscribe((response) => localStorage.setItem("role", JSON.stringify(response.role)))
+        localStorage.setItem("token", response.token)
+        this.listService.GetRole(response.token).subscribe((response) => localStorage.setItem("role", response.role))
         this.show = !this.show
         this.showMessageError = false
         this.router.navigate(['/dashboard'])
@@ -70,11 +68,11 @@ export class LoginComponent {
     this.show = !this.show
     this.listService.Register({ email: this.email, password: this.password, userName: this.userName}).subscribe(
       (response) => {
-        localStorage.setItem("token", JSON.stringify(response.token))
-        this.listService.GetRole(response.token).subscribe((response) => localStorage.setItem("role", JSON.stringify(response.role)))
+        localStorage.setItem("token", response.token)
+        this.listService.GetRole(response.token).subscribe((response) => localStorage.setItem("role", response.role))
         this.show = !this.show
         this.showMessageError = false
-        this.router.navigate(['/dashboard'])
+        this.router.navigateByUrl('/dashboard');
       },
       ({error}) => {
         this.messageError = error.message
