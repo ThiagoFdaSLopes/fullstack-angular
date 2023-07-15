@@ -8,17 +8,17 @@ export default class InfluencerController {
     public async GetAllInfluencers(req: Request, res: Response): Promise<Response | void> {
         const result = await this.influencerService.GetAllInfluencers();
         if(!result) return res.status(500).json({ message: "Servico indisponivel"})
-        res.status(200).json(result)
+        return res.status(200).json(result)
     }
 
     public async SearchInfluencersByQuery(req: Request, res: Response): Promise<Response | void> {
         try {
             const result = await this.influencerService.SearchInfluencersByQuery(req.query);
             if(!result) return res.status(404).json({ message: "Influencers Nao Encontrado"})
-            res.status(200).json(result)
+            return res.status(200).json(result)
         } catch(error) {
             const err = error as Error
-            res.status(500).json(`${err.message}`)
+            return res.status(500).json(`${err.message}`)
         }
     }
 
@@ -26,10 +26,21 @@ export default class InfluencerController {
         try {
             const result = await this.influencerService.SearchInfluencersByCombinedOptions(req.query);
             if(!result) return res.status(404).json({ message: "Influencer Nao Encontrado"})
-            res.status(200).json(result)
+            return res.status(200).json(result)
         } catch(error){
             const err = error as Error
-            res.status(500).json(`${err.message}`)
+            return res.status(500).json(`${err.message}`)
+        }
+    }
+
+    public async SearchInfluencerById(req: Request, res: Response): Promise<Response | void> {
+        try {
+            const result = await this.influencerService.SearchInfluencerById(Number(req.params.id));
+            if(!result) return res.status(404).json({ message: "Influencer not found"})
+            return res.status(200).json(result)
+        } catch(error){
+            const err = error as Error
+            return res.status(500).json(`${err.message}`)
         }
     }
 
@@ -38,10 +49,10 @@ export default class InfluencerController {
             if(res.locals.user.role !== "admin") throw new BaseHttpError("Apenas admin possue essa permissao", 401);
             const result = await this.influencerService.CreateInfluencer(req.body);
             if(!result) return res.status(404).json({ message: "Influencer ja existe"});
-            res.status(200).json(result);
+            return res.status(200).json(result);
         } catch(error){
             const err = error as Error;
-            res.status(401).json({ message: `${err.message}`});
+            return res.status(401).json({ message: `${err.message}`});
         }
     }
 
@@ -49,10 +60,10 @@ export default class InfluencerController {
         try {
             if(res.locals.user.role !== "admin") throw new BaseHttpError("Apenas admin possue essa permissao", 401);
             const result = await this.influencerService.DeleteInfluencer(Number(req.params.id));
-            res.status(200).json(result);
+            return res.status(200).json(result);
         } catch(error) {
             const err = error as Error;
-            res.status(401).json({ message: `${err.message}`});
+            return res.status(401).json({ message: `${err.message}`});
         }
     }
 
