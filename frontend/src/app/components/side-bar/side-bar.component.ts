@@ -16,12 +16,7 @@ export class SideBarComponent {
     private router: Router,
     ) {}
 
-  ngOnInit(): void {
-    const role = localStorage.getItem('role') || '';
-    if(JSON.parse(role) === "admin"){
-      this.permission = true
-    }
-  }
+  ngOnInit(): void {}
 
   Darkmode() {
     const body = document.body;
@@ -31,6 +26,7 @@ export class SideBarComponent {
 
   Logout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
     this.router.navigate(['/']);
   }
 } 
