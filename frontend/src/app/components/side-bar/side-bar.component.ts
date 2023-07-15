@@ -49,7 +49,7 @@ export class SideBarComponent {
       console.log("ShowFilter")
     }
     if(option === "newInfluencer"){
-      console.log("newInfluencer")
+      this.router.navigate(['/create'])
     }
   }
 } 
