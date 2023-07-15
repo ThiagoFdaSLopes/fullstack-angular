@@ -50,7 +50,12 @@ export const validateUserCreate = (body: IUserCreate) => {
 
 export const validateInfluencerCreate = (body: IInfluencer) => {
   const schema = Joi.object({
-    image: Joi.string().required().messages({
+    id: Joi.number().messages({
+      'string.empty': errorMessage,
+      'string.email': 'Invalid id',
+      'string.required': errorMessage,
+    }),
+    image: Joi.string().uri().required().messages({
       'string.empty': errorMessage,
       'string.email': 'Invalid image',
       'string.required': errorMessage,
@@ -60,7 +65,7 @@ export const validateInfluencerCreate = (body: IInfluencer) => {
       'string.min': 'Invalid name',
       'string.required': errorMessage,
     }),
-    platform: Joi.string().min(3).required().messages({
+    platform: Joi.string().min(4).required().messages({
       'string.empty': errorMessage,
       'string.min': 'Invalid platform',
       'string.required': errorMessage,
