@@ -21,7 +21,7 @@
             <td>{{ item.country }}</td>
             <td>{{ item.category }}</td>
             <td>
-                <button *ngIf="permission">
+                <button *ngIf="permission" (click)="Edit(item.id)">
                     <i class='bx bxs-edit-alt bx-tada icon' style='color:#44c43f'></i>
                 </button>
                 <button *ngIf="permission" (click)="Delete(item.id)">
