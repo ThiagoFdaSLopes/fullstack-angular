@@ -1,13 +1,37 @@
+<app-side-bar></app-side-bar>
 <div class="container flex">
   <form action="#">
-    <input type="text" placeholder="Link Image">
-    <input type="text" placeholder="Name" />
-    <input type="text" placeholder="Country" required />
-    <input type="text" placeholder="Platform" required />
-    <input type="text" placeholder="Category" required />
-    <input type="number" placeholder="Followers" required />
+    <h3 [ngStyle]="{'text-align': 'center', 'color': 'blue'}">Editing: {{ influencer.name }}</h3>
+    <label>
+      Link Image:
+      <input type="text" placeholder="Link Image" required [ngModelOptions]="{standalone: true}" [(ngModel)]="influencer.image">
+    </label>
+    <label>
+      Name:
+      <input type="text" placeholder="Name" [ngModelOptions]="{standalone: true}" [(ngModel)]="influencer.name"/>
+    </label>
+    <label>
+      Country:
+      <input type="text" placeholder="Country" required [ngModelOptions]="{standalone: true}" [(ngModel)]="influencer.country"/>
+    </label>
+    <label>
+      Platform:
+      <input type="text" placeholder="Platform" required [ngModelOptions]="{standalone: true}" [(ngModel)]="influencer.platform"/>
+    </label>
+    <label>
+      Category:
+      <input type="text" placeholder="Category" required [ngModelOptions]="{standalone: true}" [(ngModel)]="influencer.category"/>
+    </label>
+    <label>
+      Followers:
+      <input type="number" placeholder="Followers" required [ngModelOptions]="{standalone: true}" [(ngModel)]="influencer.followers"/>
+    </label>
     <div class="link">
-      <button type="button" class="login">Edit</button>
+      <button type="button" class="login" (click)="Edit()">Edit</button>
+      <app-spinner *ngIf="!show"></app-spinner>
+      <p *ngIf="showMessageError" class="text-error">{{ errorMessage }}</p>
+      <hr>
+      <button type="button" class="edit-back" (click)="GoDashBoard()">Back</button>
     </div>
   </form>
 </div>
