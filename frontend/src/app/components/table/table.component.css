@@ -1,3 +1,53 @@
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    background-color: var(--sidebar-color);
+    border-radius: 10px;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    background: var(--sidebar-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+form input {
+    height: 40px;
+    width: 85%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    padding: 0 7px;
+}
+
+.Search {
+    padding: 15px 20px;
+    border: none;
+    background: var(--primary-color);
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.063rem;
+    font-weight: 600;
+    transition: 0.2s ease;
+    margin-left: 10px;
+}
+
+.Search:hover {
+    background: blue;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -34,7 +84,7 @@ table td {
     color: var(--text-color);
 }
 
-button {
+.icon-button {
     border: none;
     background-color: transparent;
     display: flex;
@@ -43,4 +93,11 @@ button {
     height: 1rem;
     justify-content: center;
     margin-top: 2px;
+}
+
+.text-error {
+    color: red;
+    text-align: center;
+    font-size: 18px !important;
+    transition: all 2 ease;
 }
