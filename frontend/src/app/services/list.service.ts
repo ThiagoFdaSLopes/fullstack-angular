@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import IUser from '../interfaces/IUser';
 import IUserRegister from '../interfaces/IUserRegister';
 import { Observable } from 'rxjs';
+import IInfluencer from '../interfaces/IInfluencer';
 
 
 @Injectable({
@@ -31,8 +32,18 @@ export class ListService {
     return this.http.get(`${this.apiUrl}/influencers`, { headers })
   }
 
+  GetInlfuencerById(token: string, id: number): Observable<any> {
+    const headers = new HttpHeaders().set("Authorization", token)
+    return this.http.get(`${this.apiUrl}/influencers/${id}`, { headers })
+  }
+
   Delete(id: number, token: string): Observable<any> {
     const headers = new HttpHeaders().set("Authorization", token)
     return this.http.delete(`${this.apiUrl}/influencers/delete/${id}`, { headers })
+  }
+
+  Edit(token: string, id:number, body: IInfluencer): Observable<any> {
+    const headers = new HttpHeaders().set("Authorization", token)
+    return this.http.put(`${this.apiUrl}/influencers/update/${id}`, body, { headers })
   }
 }

@@ -40,4 +40,16 @@ export class SideBarComponent {
     localStorage.removeItem("role");
     this.router.navigate(['/']);
   }
+
+  AllowMode(option: string): void {
+    if(option === "dashboard") {
+      this.router.navigate(['dashboard'])
+    }
+    if(option === "showFilter") {
+      console.log("ShowFilter")
+    }
+    if(option === "newInfluencer"){
+      console.log("newInfluencer")
+    }
+  }
 } 

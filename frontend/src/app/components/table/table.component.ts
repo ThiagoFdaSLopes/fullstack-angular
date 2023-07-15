@@ -32,8 +32,6 @@ export class TableComponent implements OnInit   {
   }
 
   Edit(id: number) {
-    console.log(typeof(this.role))
-    console.log(this.role === "admin")
     this.role === "admin" ? this.router.navigate([`edit/${id}`]) : alert("Usuario sem permissao");
   }
 }
