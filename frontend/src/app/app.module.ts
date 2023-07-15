@@ -10,6 +10,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TableComponent } from './components/table/table.component';
 import { EditComponent } from './components/edit/edit.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EditComponent } from './components/edit/edit.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
