@@ -11,13 +11,13 @@ export default class UserController {
       const result = await this.userService.UserLogin(req.body);
       if (result === null) return res.status(401).json({ message: this.errorMessage });
       const token = createToken(result);
-      res.status(200).json({ token });
+      return res.status(200).json({ token });
     } catch (error) {
       const err = error as Error;
       if (err.message === this.errorMessage) {
         return res.status(401).json({ message: this.errorMessage });
       }
-      res.status(400).json({ message: err.message });
+      return res.status(400).json({ message: err.message });
     }
   }
 
@@ -26,7 +26,7 @@ export default class UserController {
       const result = await this.userService.UserCreate(req.body)
       if(result === null) return res.status(404).json({ message: "User already registered"})
       const token = createToken(result);
-      res.status(200).json({ token });
+      return res.status(200).json({ token });
     } catch(error) {
       const err = error as Error;
       return res.status(400).json({ message: err.message });
