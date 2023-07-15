@@ -11,6 +11,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TableComponent } from './components/table/table.component';
 import { EditComponent } from './components/edit/edit.component';
 import { FormsModule } from '@angular/forms';
+import { CreateInfluencerComponent } from './components/create-influencer/create-influencer.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     TableComponent,
     EditComponent,
+    CreateInfluencerComponent,
   ],
   imports: [
     BrowserModule,
