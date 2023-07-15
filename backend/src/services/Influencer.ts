@@ -56,6 +56,17 @@ export default class InfluencerService {
         }
     }
 
+    SearchInfluencerById(id: number): Promise<Influencer | null> {
+        try {
+            const result = this.model.findByPk(id);
+            if(!result) throw new Error("Influencer not found");
+            return result;
+        } catch(error) {
+            const err = error as Error;
+            throw new Error(`${err.message}`);
+        }
+    }
+
     async CreateInfluencer(influencer: IInfluencer): Promise<Influencer | null> {
         try {
             validateInfluencerCreate(influencer)
