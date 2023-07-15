@@ -6,7 +6,7 @@ import { EditComponent } from './components/edit/edit.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent, runGuardsAndResolvers: "always"},
   {path: 'edit/:id', component: EditComponent}
 ];
 
