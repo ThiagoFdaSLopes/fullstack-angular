@@ -14,13 +14,14 @@ influencerRouter.put('/update/:id',
     validateToken, 
     (req: Request, res: Response) => influencerController.UpdateInfluencer(req, res));
 
+influencerRouter.post('/search', 
+        validateToken, 
+        (req: Request, res: Response) => influencerController.SearchInfluencers(req, res));
+
 influencerRouter.get('/searchCombined', 
     validateToken, 
     (req: Request, res: Response) => influencerController.SearchInfluencersByCombinedOptions(req, res));
 
-influencerRouter.get('/search', 
-    validateToken, 
-    (req: Request, res: Response) => influencerController.SearchInfluencersByQuery(req, res));
 
 influencerRouter.get('/:id', 
     validateToken, 
