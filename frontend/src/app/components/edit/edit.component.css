@@ -15,15 +15,12 @@
 .login-page .text {
   margin-bottom: 90px;
 }
-.login-page h1 {
+.container label {
   color: var(--text-color);
-  font-size: 4rem;
+  font-size: 12px;
   margin-bottom: 10px;
 }
-.login-page p {
-  font-size: 1.75rem;
-  white-space: nowrap;
-}
+
 form {
   display: flex;
   flex-direction: column;
@@ -99,7 +96,7 @@ hr {
   text-align: center;
   margin-bottom: 20px;
 }
-.button button {
+.edit-back {
   padding: 15px 20px;
   border: none;
   background: #42b72a;
@@ -110,7 +107,7 @@ hr {
   font-weight: 600;
   transition: 0.2s ease;
 }
-.button button:hover {
+.edit-back:hover {
   background: #3ba626;
 }
 

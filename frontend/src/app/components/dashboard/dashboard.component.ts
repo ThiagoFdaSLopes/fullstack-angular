@@ -8,6 +8,7 @@ import { ListService } from 'src/app/services/list.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent {
   token: string | null = ''
   influencers: IInfluencer[] = []
