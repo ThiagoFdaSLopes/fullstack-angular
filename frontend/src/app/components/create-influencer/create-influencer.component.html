@@ -1,0 +1,37 @@
+<app-side-bar></app-side-bar>
+<div class="container flex">
+    <form action="#">
+      <h3 [ngStyle]="{'text-align': 'center', 'color': 'blue'}">Create Influencer</h3>
+    <label>
+      Link Image:
+      <input type="text" placeholder="Link Image" required [(ngModel)]="influencer.image" [ngModelOptions]="{standalone: true}"/>
+    </label>
+    <label>
+      Name:
+      <input type="text" placeholder="Name" [(ngModel)]="influencer.name" [ngModelOptions]="{standalone: true}"/>
+    </label>
+    <label>
+      Country:
+      <input type="text" placeholder="Country" required [(ngModel)]="influencer.country" [ngModelOptions]="{standalone: true}"/>
+    </label>
+    <label>
+      Platform:
+      <input type="text" placeholder="Platform" required [(ngModel)]="influencer.platform" [ngModelOptions]="{standalone: true}"/>
+    </label>
+    <label>
+      Category:
+      <input type="text" placeholder="Category" required [(ngModel)]="influencer.category" [ngModelOptions]="{standalone: true}"/>
+    </label>
+    <label>
+      Followers:
+      <input type="number" placeholder="Followers" required [(ngModel)]="influencer.followers" [ngModelOptions]="{standalone: true}"/>
+    </label>
+    <div class="link">
+      <button type="button" class="login" (click)="CreateInfluencer()">Create</button>
+      <app-spinner *ngIf="!show"></app-spinner>
+      <p *ngIf="showMessageError" class="text-error">{{ errorMessage }}</p>
+      <hr>
+      <button type="button" class="edit-back" (click)="GoDashBoard()">Back</button>
+    </div>
+  </form>
+</div>
