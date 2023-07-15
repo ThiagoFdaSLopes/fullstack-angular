@@ -1,5 +1,6 @@
 import { Component, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
+import { ListService } from 'src/app/services/list.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -10,13 +11,23 @@ export class SideBarComponent {
 
   dark: boolean = false
   permission: boolean = false
-  role: string = ''
+  token = ''
+  role = ''
   constructor(
     private renderer: Renderer2, 
     private router: Router,
+    private listService: ListService
     ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.token = localStorage.getItem("token") || '';
+    this.listService.GetRole(this.token).subscribe((response) => {
+      this.role = response.role
+      if(response.role === "admin") {
+        this.permission = true
+      }
+    })
+  }
 
   Darkmode() {
     const body = document.body;
