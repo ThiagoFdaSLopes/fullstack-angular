@@ -13,15 +13,25 @@ export default class InfluencerService {
         return result;
     }
 
-    async SearchInfluencersByQuery(query: IQuery): Promise<Influencer[] | null> {
+    async SearchInfluencers(query: IQuery): Promise<Influencer[] | null> {
+        console.log(query)
         let whereClause: IWhereClause = {
-            [Op.or]: [
-                { name: { [Op.like]: `%${query.name}%`}},
-                { country: { [Op.like]: `%${query.country}%`}},
-                { category: { [Op.like]: `%${query.category}%`}},
-            ]
+            [Op.or]: []
         }
-        if (query.followers !== undefined) {
+
+        if (query.name !== undefined && query.name.length > 0) {
+            whereClause[Op.or].push({ name: { [Op.like]: `%${query.name}%` } });
+        }
+
+        if (query.country !== undefined && query.country.length > 0) {
+            whereClause[Op.or].push({ country: { [Op.like]: `%${query.country}%` } });
+        }
+        
+        if (query.category !== undefined && query.category.length > 0) {
+            whereClause[Op.or].push({ category: { [Op.like]: `%${query.category}%` } });
+        }
+
+        if (query.followers !== undefined && query.followers > 0) {
             whereClause[Op.or].push({ followers: { [Op.gte]: Number(query.followers) } })
         }
 
@@ -29,6 +39,7 @@ export default class InfluencerService {
             const result = await this.model.findAll({
                 where: whereClause
             })
+            console.log(result)
             return result.length > 0 ? result : null;
         } catch(error) {
             const err = error as Error;
