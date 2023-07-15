@@ -9,7 +9,15 @@ import { ListService } from 'src/app/services/list.service';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent {
-  influencer!: IInfluencer;
+  influencer: IInfluencer = {
+    id: 0,
+    image: '',
+    name: '',
+    platform: '',
+    country: '',
+    category: '',
+    followers: 0,
+  }
   userId!: number
   token!: string
   show: boolean = true
