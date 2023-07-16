@@ -94,6 +94,8 @@ Apos clonar, executa o script `./install_dependencies.sh` em um terminal `bash`.
 Esse serviço ira inicializar os container ```app_backend```, ```app_frontend```, e container do banco de dados mysql.
 Ao subir os 3 containers as aplicacoes ja estaram rodando em suas respectivas portas.
 
+Altere no package.json o script ```start``` para o seguinte comando ```ng server --host 0.0.0.0 --poll=2000``` para permitir que seja depurado no localhost o frontend.
+
 Para consumir o frontend acesse em seu navegador: ```http://localhost:4200```
 
 :warning: Atenção :warning: Caso opte por utilizar o Docker, TODOS os comandos disponíveis no package.json (npm start, npm test, npm run dev, ...) devem ser executados DENTRO do container, ou seja, no terminal que aparece após a execução do comando docker exec citado acima.
